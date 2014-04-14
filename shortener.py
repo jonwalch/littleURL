@@ -12,6 +12,8 @@ def homepage():
 def createShort(url):
 	rand = random.randint(0,999999)
 	shortUrl = str(rand)
+	if url.startswith("http://") == False and url.startswith("https://") == False:
+		url = "http://" + url
 	
 	if shortUrl in db:
 		return createShort(url)
@@ -21,7 +23,7 @@ def createShort(url):
 	
 def pullShort(url):
 	if url in db: 
-		return db[url]
+		return render_template("result.html", url = db[url])
 	else:
 		return render_template("result.html", url = createShort(url))
 	
@@ -34,7 +36,7 @@ def sendDomain(page):
 	for key, value in db.items():
 		if value == page:
 			return redirect(key)
-	return 'Not found son'
+	return render_template("notfound.html")
 		
 if __name__ == "__main__":
     app.run()
