@@ -1,6 +1,6 @@
 littleURL
 
-URL shortener and redirecter written in Python using Flask framework
+URL shortener and redirector written in Python using Flask framework
 
 
 
